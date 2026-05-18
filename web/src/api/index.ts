@@ -266,6 +266,10 @@ export const api = {
       if (lang_version) query.set('lang_version', lang_version)
       return request<{ command: string }>(`/deps/reinstall-all-cmd?${query}`, { method: 'POST' })
     },
+    getBatchInstallCmd: (data: { items: { name: string; version?: string; language: string; lang_version?: string }[] }) =>
+      request<{ command: string }>('/deps/batch-install-cmd', { method: 'POST', body: JSON.stringify(data) }),
+    import: (data: { language: string; lang_version?: string; content: string; import_db?: boolean }) =>
+      request<{ dependencies: Dependency[]; command: string }>('/deps/import', { method: 'POST', body: JSON.stringify(data) }),
     getInstalled: (language: string, lang_version?: string) => {
       const query = new URLSearchParams({ language })
       if (lang_version) query.set('lang_version', lang_version)

@@ -346,11 +346,11 @@ onMounted(() => {
                 <p class="text-muted-foreground text-sm mt-0.5">管理编程语言及相关包依赖(Mise)</p>
             </div>
 
-            <div class="flex flex-row items-center gap-2 shrink-0 w-full md:w-auto overflow-x-auto pb-1 sm:pb-0">
+            <div class="flex flex-row items-center justify-start sm:justify-end gap-2 shrink-0 w-full md:w-auto overflow-x-auto pb-1 sm:pb-0">
                 <Button @click="openInstallDialog" class="flex-1 sm:flex-none h-9 text-sm px-2 sm:px-4">
                     <Plus class="h-3.5 w-3.5 sm:mr-2" /> <span class="whitespace-nowrap">新增语言</span>
                 </Button>
-                <Tabs v-model="activeTab" class="flex-1 sm:w-auto">
+                <Tabs v-model="activeTab" class="flex-1 sm:flex-none">
                     <TabsList class="h-9 p-0.5 bg-muted/20 border border-border/40 rounded-lg w-full sm:w-auto flex">
                         <TabsTrigger value="runtimes" class="px-3 h-8 text-xs gap-1.5 font-medium transition-all flex-1 sm:flex-none">
                             <Boxes class="w-3.5 h-3.5 opacity-70" />
