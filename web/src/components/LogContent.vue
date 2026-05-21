@@ -49,7 +49,7 @@ function initTerminal() {
     cursorBlink: false,
     disableStdin: true,
     fontSize: 12,
-    lineHeight: 1.15,
+    lineHeight: 1.25,
     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     theme: getTheme(),
     allowTransparency: true,

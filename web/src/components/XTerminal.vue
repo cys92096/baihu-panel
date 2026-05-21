@@ -72,7 +72,7 @@ function initTerminal(forceConnect = false) {
   terminal = new Terminal({
     cursorBlink: true,
     fontSize: props.fontSize,
-    lineHeight: 1.15,
+    lineHeight: 1.25,
     fontFamily: 'Consolas, Monaco, "Courier New", monospace',
     theme: {
       background: '#1e1e1e',
