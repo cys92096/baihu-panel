@@ -37,14 +37,17 @@
 
 ### 路径二：脚本手动调用 (内置助手库 - 推荐)
 
-白虎面板提供了一套**零配置**的内建助手库（Built-in SDK），支持 Python 和 Node.js。它会自动读取系统注入的环境变量，让您在脚本中只需一行代码即可实现通知投递。
+白虎面板提供了一套**零配置**的内建助手库（Built-in SDK），支持 Python 和 Node.js。除了支持极简的消息通知投递外，它还支持管理面板的**环境变量**与**定时任务控制**。
 
 #### 1. 如何获取配置 Key？
-在使用助手库前，请确保您已经在任务设置的“环境变量”或“机密”中配置了以下两个同名 Key：
-- **BHPKG_NOTIFY_TOKEN**：进入「消息推送」->「脚本调用说明」标签，您可以直接复制此处的 Token（如未生成请先点击生成）。
-- **BHPKG_NOTIFY_CHANNEL**：进入「消息推送」->「渠道列表」标签，可以查看每个渠道对应的 **ID**。如果您希望使用默认渠道，也可直接在「脚本调用说明」页面的代码示例中找到默认 ID。
-- **BHPKG_NOTIFY_URL** (可选)：内建通知 API 的地址。默认为 `http://localhost:8052/api/v1/notify/send`。**如果您更改了容器内部的服务监听端口（如通过 `BH_SERVER_PORT`），则需要同步设置此变量为 `http://localhost:{您的端口}/api/v1/notify/send`。**
-
+在使用助手库前，请确保您已经在任务设置的“环境变量”或“机密”中配置了以下对应 Key：
+- **消息推送相关**：
+  - `BHPKG_NOTIFY_TOKEN`：进入「消息推送」->「脚本调用说明」标签，可以直接复制此处的 Token。
+  - `BHPKG_NOTIFY_CHANNEL`：进入「消息推送」->「渠道列表」标签，可以查看每个渠道对应的 **ID**。
+  - `BHPKG_NOTIFY_URL` (可选)：内置通知 API 的地址。默认为 `http://localhost:8052/api/v1/notify/send`。
+- **环境与任务管理相关**：
+  - `BHPKG_OPENAPI_TOKEN` (或 `OPENAPI_TOKEN`)：OpenAPI 鉴权 Token，在「系统设置」->「OpenAPI」中生成。
+  - `BHPKG_OPENAPI_URL` (可选)：默认为本地面板 API 地址。
 
 #### 2. 环境初始化
 在开始编写脚本前，您需要在终端执行以下命令，为面板管理的所有语言环境安装 `baihu` 包：
@@ -54,23 +57,37 @@ baihu builtininstall
 ```
 *该操作会将助手库安装到 mise 管理的所有版本中，确保 import 成功。*
 
-#### 2. 代码示例
+#### 3. 代码示例
 
 ##### Python (同步调用)
 ```python
 import baihu
 
-# 内部自动通过环境变量鉴权，无需填 TOKEN 和 URL
+# 消息通知
 baihu.notify("任务标题", "通知正文内容")
+
+# 环境变量与任务管理（详细用法见内置库示例）
+envs = baihu.get_envs()
+tasks = baihu.get_tasks()
 ```
 
 ##### Node.js (异步调用)
 ```javascript
 const baihu = require('baihu');
 
-// 极简调用，支持在 CommonJS/ESM 中使用
+// 消息通知
 baihu.notify("任务标题", "通知正文内容");
+
+// 环境变量与任务管理（详细用法见内置库示例）
+(async () => {
+    const envs = await baihu.getEnvs();
+    const tasks = await baihu.getTasks();
+})();
 ```
+
+> [!TIP]
+> 关于环境变量增删改查以及任务触发控制的完整 API 列表与更详尽的代码，请参考 [内置库示例](./examples/builtin.md)。
+
 
 ---
 

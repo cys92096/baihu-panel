@@ -1,5 +1,23 @@
 import os
 from .notify import notify as _notify
+from .env import (
+    get_envs,
+    get_env,
+    add_envs,
+    add_env,
+    update_env,
+    delete_envs,
+    delete_env
+)
+from .task import (
+    get_tasks,
+    get_task,
+    update_task,
+    delete_task,
+    execute_task,
+    stop_task,
+    get_last_results
+)
 
 def notify(title, text):
     """
@@ -19,4 +37,20 @@ def notify(title, text):
     
     return _notify(title, text)
 
-__all__ = ['notify']
+__all__ = [
+    'notify',
+    'get_envs',
+    'get_env',
+    'add_envs',
+    'add_env',
+    'update_env',
+    'delete_envs',
+    'delete_env',
+    'get_tasks',
+    'get_task',
+    'update_task',
+    'delete_task',
+    'execute_task',
+    'stop_task',
+    'get_last_results'
+]

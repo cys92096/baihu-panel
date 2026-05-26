@@ -43,7 +43,7 @@ export default defineConfig({
                         link: '/guide/examples/',
                         items: [
                             { text: '浏览器示例', link: '/guide/examples/browser' },
-                            { text: '消息通知示例', link: '/guide/examples/notify' }
+                            { text: '内置库示例', link: '/guide/examples/builtin' }
                         ]
                     }
                 ]

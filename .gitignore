@@ -52,6 +52,7 @@ bin/
 *.log
 
 # VitePress
+docs/.vitepress/dist/
 docs/.vitepress/cache/
 docs/node_modules/
 docs/public/swagger.json
@@ -63,3 +64,6 @@ openapi_docs/
 # Builtin SDK (Force Include)
 !builtin/
 !builtin/**
+builtin/**/__pycache__/
+builtin/**/*.pyc
+
