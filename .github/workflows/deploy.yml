@@ -1,8 +1,8 @@
 name: Build-Deploy-Server
 
-on:
+于:
   push:
-    branches: [ main ]
+    分支: [ main ]
   workflow_dispatch:
 
 concurrency:
@@ -11,7 +11,7 @@ concurrency:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: baihu
+  IMAGE_NAME: huhubai
 
 jobs:
   build:
